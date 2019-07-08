@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class enemy1_controller : MonoBehaviour
@@ -13,8 +12,9 @@ public class enemy1_controller : MonoBehaviour
     public class State
     {
         public int currentState = 0;
-        public static int IDLE = 1;
-        public static int WALK = 0;
+        public static readonly int WALK = 0;
+        public static readonly int ATTACK = 1;
+        public static readonly int DEATH = 2;
     }
 
     // Start is called before the first frame update
@@ -28,9 +28,14 @@ public class enemy1_controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (state.currentState == 1)
+        if (state.currentState == State.DEATH)
         {
-            rb.velocity = new Vector2(0f, 0f);
+            rb.velocity = Vector2.zero;
+
+        }
+        else if(state.currentState == State.ATTACK)
+        {
+            rb.velocity = Vector2.zero;
         }
         else
         {
@@ -44,9 +49,14 @@ public class enemy1_controller : MonoBehaviour
         if (collision.gameObject.CompareTag("Lowerbound"))
         {
             Debug.Log("collision w lowerbound");
-            state.currentState = State.IDLE;
+            state.currentState = State.DEATH;
             animator.SetInteger("state", state.currentState);
-            Thread.Sleep(3000);
+            Destroy(gameObject);
+        }
+        else if(collision.gameObject.CompareTag("Ammo"))
+        {
+            Debug.Log("enemy hit by an ammo");
+            state.currentState = State.ATTACK;
             Destroy(gameObject);
         }
     }
