@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Lowerbound
+  - Ammo
   layers:
   - Default
   - TransparentFX
