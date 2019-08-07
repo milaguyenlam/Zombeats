@@ -25,6 +25,7 @@ public class shooting_controller : MonoBehaviour
 
     private void Update()
     {
+        Aim = transform.position;
         if (Input.touches.Length > 0)
         {
             if (Input.touches[0].phase == TouchPhase.Began)
