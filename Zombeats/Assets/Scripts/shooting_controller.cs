@@ -22,6 +22,11 @@ public class shooting_controller : MonoBehaviour
         Instantiate(Ammo, Aim, Quaternion.identity);
     }
 
+    private void ShootAmmo()
+    {
+        
+    }
+
     private void Update()
     {
         if (Input.touches.Length > 0)
