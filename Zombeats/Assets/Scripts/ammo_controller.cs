@@ -4,58 +4,60 @@ using UnityEngine;
 
 public class ammo_controller : MonoBehaviour
 {
-    private Vector2 direction, target;
-    private bool arrived;
-    private Transform transform;
-    private Rigidbody2D rb;
+    private Vector2 target;
     public float velocity;
     private readonly Vector2 startAim = new Vector2(0f, -3.4f);
+    private CircleCollider2D collider;
+    private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<CircleCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        Disable();
+    }
+
+    public void loadTarget(Vector2 target)
+    {
+        this.target = target;
+    }
+
+    private void Disable()
+    {
+        collider.enabled = false;
+    }
+
+    private void Enable()
+    {
+        collider.enabled = true;
+        sprite.material.SetColor("_Color", Color.green);
+        
+    }
+
+    private void Dissapear()
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (CheckIfArrived())
+        Vector2 position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), target, 0.1f);
+        transform.position = position;
+        if (Vector2.Distance(transform.position, target) <= 0.1f)
         {
-
-        }
-        else
-        {
-            Move();
+            Enable();
+            Invoke("Dissapear", 2.0f);
         }
     }
 
-    private bool CheckIfArrived()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(arrived)
+        if(collision.gameObject.CompareTag("Enemy"))
         {
-            return true;
-        }
-        else
-        {
-            if(true)
-            {
-                //ammo has arrived to the target
-                arrived = true;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Destroy(gameObject);
         }
     }
-
-    private void Move()
-    {
-
-    }
-
-
-
 
 }

@@ -19,12 +19,8 @@ public class shooting_controller : MonoBehaviour
 
     private void PlaceAmmo()
     {
-        Instantiate(Ammo, Aim, Quaternion.identity);
-    }
-
-    private void ShootAmmo()
-    {
-        
+        GameObject ammo = (GameObject)Instantiate(Ammo, startAim, Quaternion.identity);
+        ammo.GetComponent<ammo_controller>().loadTarget(Aim);
     }
 
     private void Update()
