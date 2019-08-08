@@ -32,6 +32,7 @@ public class enemy1_controller : enemy_controller
         else if(collision.gameObject.CompareTag("Ammo"))
         {
             Debug.Log("enemy hit by an ammo");
+            
             attack();
             if (lives < 1)
             {

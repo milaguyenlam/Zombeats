@@ -9,6 +9,8 @@ public class shooting_controller : MonoBehaviour
     private Vector2 startTouch, swipeDelta, Aim;
     private readonly Vector2 startAim = new Vector2(0f, -3.4f);
     private bool isDraging = false;
+    private bool reloaded = true;
+    public float reloadTime;
 
     public Vector2 SwipeDelta { get { return swipeDelta; } }
     private void Reset()
@@ -21,6 +23,13 @@ public class shooting_controller : MonoBehaviour
     {
         GameObject ammo = (GameObject)Instantiate(Ammo, startAim, Quaternion.identity);
         ammo.GetComponent<ammo_controller>().loadTarget(Aim);
+        reloaded = false;
+        Invoke("reload", reloadTime);
+    }
+
+    private void reload()
+    {
+        reloaded = true;
     }
 
     private void Update()
@@ -35,7 +44,14 @@ public class shooting_controller : MonoBehaviour
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
-                PlaceAmmo();
+                if (reloaded)
+                {
+                    PlaceAmmo();
+                }
+                else
+                {
+                    Debug.Log("not reloaded yet");
+                }
                 isDraging = false;
                 Reset();
             }
