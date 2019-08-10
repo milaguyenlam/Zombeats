@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class ammo_controller : MonoBehaviour
 {
-    private Vector2 target;
-    public float velocity;
-    private readonly Vector2 startAim = new Vector2(0f, -3.4f);
+    public GameObject crosshair;
+    public float moveDelta;
+    private Vector2 startAim;
     private CircleCollider2D collider;
     private SpriteRenderer sprite;
+    private Vector2 target;
+
+    //variables for throw animation
+    private float g = 10f;
+    private float v;
+    private float alfa = 45f;
+    private float distance;
+    private Vector2 startScale;
+
 
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<CircleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+        startAim = crosshair.GetComponent<shooting_controller>().startAim;
+
+        distance = Vector2.Distance(startAim, target);
+        v = Mathf.Sqrt(distance * g / Mathf.Sin(2 * alfa));
+        startScale = transform.localScale;
+
         Disable();
     }
 
@@ -43,13 +58,28 @@ public class ammo_controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), target, 0.1f);
-        transform.position = position;
+        move();
+        throwanim();
         if (Vector2.Distance(transform.position, target) <= 0.1f)
         {
             Enable();
             Invoke("Dissapear", 2.0f);
         }
+    }
+
+    private void move()
+    {
+        Vector2 position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), target, moveDelta);
+        transform.position = position;
+    }
+
+    private void throwanim()
+    {
+        float cur_distance = Vector2.Distance(transform.position, target);
+        float t = cur_distance / (v * Mathf.Cos(alfa));
+        float y = cur_distance * Mathf.Tan(alfa) - g / 2 * Mathf.Pow(t, 2f);
+
+        transform.localScale = startScale * (1 + y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

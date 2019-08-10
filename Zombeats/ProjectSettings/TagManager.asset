@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Lowerbound
   - Ammo
+  - HUD
   layers:
   - Default
   - TransparentFX
@@ -47,9 +47,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Forground
-    uniqueID: 1275752207
+  - name: Crosshair
+    uniqueID: 2642439443
     locked: 0
-  - name: Game Objects
+  - name: Enemy
     uniqueID: 2388705617
+    locked: 0
+  - name: Ammo
+    uniqueID: 1178494563
+    locked: 0
+  - name: UI
+    uniqueID: 3413915649
     locked: 0

@@ -20,7 +20,7 @@ public class enemy1_controller : enemy_controller
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Lowerbound"))
+        if (collision.gameObject.CompareTag("HUD"))
         {
             Debug.Log("collision w lowerbound");
             attack();
@@ -43,19 +43,14 @@ public class enemy1_controller : enemy_controller
 
     public override void move()
     {
-        if (state == State.DEATH)
-        {
-            rb.velocity = Vector2.zero;
-
-        }
-        else if (state == State.ATTACK)
-        {
-            rb.velocity = Vector2.zero;
-        }
-        else
+        if (state == State.WALK)
         {
             Vector2 vector = new Vector2(0.0f, -1.0f);
             rb.velocity = vector * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -64,14 +59,14 @@ public class enemy1_controller : enemy_controller
         state = State.ATTACK;
         lives--;
         LaunchAnimation(state);
-        Invoke("walk", 1f); //time parameter should correspond with attack animation duration
+        Invoke("walk", 1f); //time parameter should correspond with duration of attack animation
     }
 
     public override void die()
     {
         state = State.DEATH;
         LaunchAnimation(state);
-        Invoke("Dissapear", 1f); //time parameter should correspond with death animation duration
+        Invoke("Dissapear", 1f); //time parameter should correspond with duration of death animation
     }
 
 

@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class shooting_controller : MonoBehaviour
 {
     public float AimRatio;
     public GameObject Ammo;
     private Vector2 startTouch, swipeDelta, Aim;
-    private readonly Vector2 startAim = new Vector2(0f, -3.4f);
+    public readonly Vector2 startAim = new Vector2(0f, -3.4f);
     private bool isDraging = false;
     private bool reloaded = true;
     public float reloadTime;
+
+
+    //variables for disabling aiming
+    public GameObject InGameUI;
+    private bool GamePaused;
+
+
+
 
     public Vector2 SwipeDelta { get { return swipeDelta; } }
     private void Reset()
@@ -34,6 +43,14 @@ public class shooting_controller : MonoBehaviour
 
     private void Update()
     {
+        // cant aim when game is paused
+        GamePaused = InGameUI.GetComponent<InGameUI_controller>().GetPaused();
+        if (GamePaused || EventSystem.current.IsPointerOverGameObject()) //wont to anything when clicking on an UI object
+        {
+            return;
+        }
+
+
         Aim = transform.position;
         if (Input.touches.Length > 0)
         {

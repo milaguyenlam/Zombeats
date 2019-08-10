@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df2545de43b8154e8b2cc36a0fceb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
 --- !u!111 &7947032612145432915
 Animation:
   m_ObjectHideFlags: 0
@@ -192,4 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59f01419aca04b469b748f515b193e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 1
+  rb: {fileID: 0}
+  animator: {fileID: 0}
+  lives: 1
+  speed: 0.3
+  state: 0
+  diet: 0
