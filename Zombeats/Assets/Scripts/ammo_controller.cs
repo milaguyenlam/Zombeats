@@ -24,7 +24,7 @@ public class ammo_controller : MonoBehaviour
     {
         collider = GetComponent<CircleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        startAim = crosshair.GetComponent<shooting_controller>().startAim;
+        startAim = crosshair.GetComponent<shooting_controller>().startAim; //depends on player position
 
         distance = Vector2.Distance(startAim, target);
         v = Mathf.Sqrt(distance * g / Mathf.Sin(2 * alfa));
