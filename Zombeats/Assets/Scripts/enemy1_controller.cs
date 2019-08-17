@@ -32,7 +32,7 @@ public class enemy1_controller : enemy_controller
         else if(collision.gameObject.CompareTag("Ammo"))
         {
             Debug.Log("enemy hit by an ammo");
-            
+            //if ammo corresponds to enemy diet then attack()
             attack();
             if (lives < 1)
             {

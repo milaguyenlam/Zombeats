@@ -11,7 +11,7 @@ public abstract class enemy_controller : MonoBehaviour
     public enum State { WALK, IDLE, ATTACK, DEATH}
     public State state;
 
-    public enum Diet { VEGETARIAN, VEGAN, DAIRYFREE, MEAT}
+    public enum Diet { VEGAN, DAIRYFREE, MEAT}
     public Diet diet;
 
     public abstract void move();

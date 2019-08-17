@@ -45,11 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a16d4e2036d4a4ea2ab1b386ca1a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUD: {fileID: 1584895407714785381, guid: 424eb646a0e08fd4fa25cd9d927b675b, type: 3}
   AimRatio: 0.1
   Ammo: {fileID: 1883599707338777942, guid: cb352871e055bdf45adfc41d782a9f6a, type: 3}
   reloadTime: 2
-  InGameUI: {fileID: 0}
 --- !u!212 &3244361330974713583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85,7 +83,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1652527853
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aad0a84814d217c4998b912a8e18aeb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

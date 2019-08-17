@@ -5,11 +5,10 @@ using UnityEngine.EventSystems;
 
 public class shooting_controller : MonoBehaviour
 {
-    public GameObject HUD;
     public float AimRatio;
     public GameObject Ammo;
     private Vector2 startTouch, swipeDelta, Aim;
-    public readonly Vector2 startAim = new Vector2(0f, -3.33f); //cannot be hard-coded like this, depends on a player position
+    public readonly Vector2 startAim = new Vector2(0f, -3.4f);
     private bool isDraging = false;
     private bool reloaded = true;
     public float reloadTime;
@@ -18,6 +17,8 @@ public class shooting_controller : MonoBehaviour
     //variables for disabling aiming
     public GameObject InGameUI;
     private bool GamePaused;
+
+
 
 
     public Vector2 SwipeDelta { get { return swipeDelta; } }
@@ -48,6 +49,7 @@ public class shooting_controller : MonoBehaviour
         {
             return;
         }
+
 
         Aim = transform.position;
         if (Input.touches.Length > 0)
