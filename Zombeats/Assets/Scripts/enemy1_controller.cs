@@ -29,7 +29,7 @@ public class enemy1_controller : enemy_controller
             {
                 die();
             }
-            
+
         }
         else if(collision.gameObject.CompareTag("Ammo"))
         {

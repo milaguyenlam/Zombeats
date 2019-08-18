@@ -5,12 +5,10 @@ using UnityEngine;
 public class InGameUI_controller : MonoBehaviour
 {
     public GameObject PauseMenu;
+    public GameObject AfterGamePanel;
     public static bool GamePaused = false;
     public GameObject[] hearts;
     private int heart_counter = 2;
-
-
-
 
     public void Pause()
     {
@@ -42,6 +40,7 @@ public class InGameUI_controller : MonoBehaviour
     public void GameOver()
     { 
         Debug.Log("GameOver");
+        AfterGamePanel.SetActive(true);
     }
 
     public void Win()

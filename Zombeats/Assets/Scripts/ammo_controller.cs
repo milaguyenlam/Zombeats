@@ -89,5 +89,4 @@ public class ammo_controller : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
