@@ -48,6 +48,8 @@ MonoBehaviour:
   AimRatio: 0.1
   Ammo: {fileID: 1883599707338777942, guid: cb352871e055bdf45adfc41d782a9f6a, type: 3}
   reloadTime: 2
+  InGameUI: {fileID: 8248442000747121413, guid: b0deb4e55900dc6468b81c25cad0397c,
+    type: 3}
 --- !u!212 &3244361330974713583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -83,7 +85,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1652527853
-  m_SortingLayer: 4
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aad0a84814d217c4998b912a8e18aeb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,4 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df2545de43b8154e8b2cc36a0fceb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUD: {fileID: 0}
+  HUD: {fileID: 8679041139354304172, guid: 6f641894e15b28f498f12040159de643, type: 3}

@@ -32,6 +32,7 @@ public class shooting_controller : MonoBehaviour
     {
         GameObject ammo = (GameObject)Instantiate(Ammo, startAim, Quaternion.identity);
         ammo.GetComponent<ammo_controller>().loadTarget(Aim);
+        //ammo.GetComponent<ammo_controller>().loadType(Iammo_controller.Type.MEAT);
         reloaded = false;
         Invoke("reload", reloadTime);
     }

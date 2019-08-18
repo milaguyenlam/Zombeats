@@ -14,4 +14,14 @@ public class PauseMenu_controller : MonoBehaviour
         InGameUI.GetComponent<InGameUI_controller>().SetPausedAsFalse();
         Debug.Log("Resume!");
     }
+
+    public void Quit()
+    {
+        Debug.Log("opening main menu...");
+    }
+
+    public void Settings()
+    {
+        Debug.Log("opening settings menu...");
+    }
 }

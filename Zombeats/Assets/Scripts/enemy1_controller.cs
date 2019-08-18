@@ -24,10 +24,12 @@ public class enemy1_controller : enemy_controller
         {
             Debug.Log("collision w lowerbound");
             attack();
+            collision.gameObject.GetComponent<HUD_controller>().gotHit();
             if (lives < 1)
             {
                 die();
             }
+            
         }
         else if(collision.gameObject.CompareTag("Ammo"))
         {
