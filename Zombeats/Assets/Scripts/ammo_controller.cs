@@ -7,9 +7,17 @@ public class ammo_controller : MonoBehaviour
     public GameObject crosshair;
     public float moveDelta;
     private Vector2 startAim;
-    private CircleCollider2D collider;
+    private CircleCollider2D collider2D;
     private SpriteRenderer sprite;
     private Vector2 target;
+
+    private enum State { FRESH, EXPIRED, ROTTEN }
+    private State state;
+    private Animator animator;
+    //states for animation
+    public enum Type { VEGAN, DAIRYFREE, MEAT }
+    public Type type;
+    //type of the ammo
 
     //variables for throw animation
     private float g = 10f;
@@ -22,8 +30,7 @@ public class ammo_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<CircleCollider2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        collider2D = GetComponent<CircleCollider2D>();
         startAim = crosshair.GetComponent<shooting_controller>().startAim; //depends on player position
 
         distance = Vector2.Distance(startAim, target);
@@ -31,6 +38,31 @@ public class ammo_controller : MonoBehaviour
         startScale = transform.localScale;
 
         Disable();
+
+    }
+
+    public void loadType(Type type)
+    {
+        this.type = type;
+        sprite = GetComponent<SpriteRenderer>();
+        switch (type)
+        {
+            case Type.MEAT:
+                Debug.Log("color set");
+                sprite.material.SetColor("_Color", Color.red);
+                break;
+            case Type.DAIRYFREE:
+                Debug.Log("color set");
+                sprite.material.SetColor("_Color", Color.white);
+                break;
+            case Type.VEGAN:
+                Debug.Log("color set");
+                sprite.material.SetColor("_Color", Color.green);
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void loadTarget(Vector2 target)
@@ -40,14 +72,13 @@ public class ammo_controller : MonoBehaviour
 
     private void Disable()
     {
-        collider.enabled = false;
+        collider2D.enabled = false;
     }
 
     private void Enable()
     {
-        collider.enabled = true;
-        sprite.material.SetColor("_Color", Color.green);
-
+        collider2D.enabled = true;
+        
     }
 
     private void Dissapear()

@@ -32,20 +32,27 @@ public class InGameUI_controller : MonoBehaviour
     public void disableHeart()
     {
         Debug.Log(heart_counter);
-        if (heart_counter < 0) { return; }
-        hearts[heart_counter].SetActive(false);
-        heart_counter--;
+        if (heart_counter > 0)
+        {
+            hearts[heart_counter].SetActive(false);
+            heart_counter--;
+        }
     }
 
     public void GameOver()
     { 
         Debug.Log("GameOver");
+        gameObject.SetActive(false);
         AfterGamePanel.SetActive(true);
+        AfterGamePanel.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void Win()
     {
         Debug.Log("Win");
+        gameObject.SetActive(false);
+        AfterGamePanel.SetActive(true);
+        AfterGamePanel.transform.GetChild(1).gameObject.SetActive(true);
     }
 
 }

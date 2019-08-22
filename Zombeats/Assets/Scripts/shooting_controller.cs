@@ -32,7 +32,7 @@ public class shooting_controller : MonoBehaviour
     {
         GameObject ammo = (GameObject)Instantiate(Ammo, startAim, Quaternion.identity);
         ammo.GetComponent<ammo_controller>().loadTarget(Aim);
-        //ammo.GetComponent<ammo_controller>().loadType(Iammo_controller.Type.MEAT);
+        ammo.GetComponent<ammo_controller>().loadType(ammo_controller.Type.VEGAN); //Type depending on swipebar state
         reloaded = false;
         Invoke("reload", reloadTime);
     }

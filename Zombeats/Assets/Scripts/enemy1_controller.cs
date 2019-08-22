@@ -2,8 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy1_controller : enemy_controller
+public class enemy1_controller : MonoBehaviour, Ienemy_controller
 {
+    private GameObject spawner;
+    private Rigidbody2D rb;
+    private Animator animator;
+
+    public int lives;
+    public float speed;
+    private enum State { WALK, IDLE, ATTACK, DEATH }
+    private State state;
+    public enum Diet { VEGAN, DAIRYFREE, MEAT }
+    public Diet diet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,15 +46,17 @@ public class enemy1_controller : enemy_controller
         {
             Debug.Log("enemy hit by an ammo");
             //if ammo corresponds to enemy diet then attack()
-            attack();
+            Debug.Log(collision.gameObject.GetComponent<ammo_controller>().type + "-" + diet);
+            attack(collision.gameObject);
             if (lives < 1)
             {
                 die();
             }
+
         }
     }
 
-    public override void move()
+    public void move()
     {
         if (state == State.WALK)
         {
@@ -56,15 +69,28 @@ public class enemy1_controller : enemy_controller
         }
     }
 
-    public override void attack()
+    public void attack(GameObject go)
+    {
+        state = State.ATTACK;
+        if ((int)go.GetComponent<ammo_controller>().type == (int)diet)
+        {
+            lives--;
+        }
+        LaunchAnimation(state);
+        Invoke("walk", 1f); //time parameter should correspond with duration of attack animation
+        spawner.GetComponent<enemySpawner_controller>().enemyDie();
+    }
+
+    public void attack()
     {
         state = State.ATTACK;
         lives--;
         LaunchAnimation(state);
         Invoke("walk", 1f); //time parameter should correspond with duration of attack animation
+        spawner.GetComponent<enemySpawner_controller>().enemyDie();
     }
 
-    public override void die()
+    public void die()
     {
         state = State.DEATH;
         LaunchAnimation(state);
@@ -72,7 +98,7 @@ public class enemy1_controller : enemy_controller
     }
 
 
-    public override void reaction()
+    public void reaction()
     {
         
     }
@@ -91,6 +117,16 @@ public class enemy1_controller : enemy_controller
     {
         state = State.WALK;
         LaunchAnimation(state);
+    }
+
+    public void setSpawner(GameObject spawner)
+    {
+        this.spawner = spawner;
+    }
+
+    public void loadDiet(Diet diet)
+    {
+        this.diet = diet;
     }
 
 }
